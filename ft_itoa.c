@@ -6,83 +6,51 @@
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:33:39 by lfiorell          #+#    #+#             */
-/*   Updated: 2024/11/07 10:34:46 by lfiorell         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:18:17 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-static int	get_num_length(int n)
+static void	handle_nbr(int n, char *res, int len, int sign)
 {
-	int	length;
-
-	length = 0;
 	while (n != 0)
 	{
+		if (n < 0)
+			res[--len] = (n % 10) * -1 + '0';
+		else
+			res[--len] = n % 10 + '0';
 		n /= 10;
-		length++;
 	}
-	return (length);
-}
-
-static char	*handle_negative_number(int n, char *res)
-{
-	char	*neg;
-	char	*temp;
-
-	neg = ft_itoa(-n);
-	if (!neg)
-		return (NULL);
-	temp = res;
-	res = ft_strjoin("-", neg);
-	free(temp);
-	free(neg);
-	return (res);
-}
-
-void	inner_itea(char *res, int *i, int *n, int *len)
-{
-	if (*len >= 2)
-	{
-		res[(*i)++] = (*n % 100) / 10 + '0';
-		res[(*i)++] = (*n % 10) + '0';
-		*n /= 100;
-		*len -= 2;
-	}
-	else
-	{
-		while (*len > 0)
-		{
-			res[(*i)++] = (*n % 10) + '0';
-			*n /= 10;
-			(*len)--;
-		}
-	}
+	if (sign == -1)
+		res[0] = '-';
 }
 
 char	*ft_itoa(int n)
 {
-	char	*res;
-	int		len;
-	int		i;
+	long long	nb;
+	int			sign;
+	int			len;
+	char		*res;
 
-	if (n == INT_MIN)
-		return (ft_strdup("-2147483648"));
-	if (n == 0)
-		return (ft_strdup("0"));
-	if (n == INT_MAX)
-		return (ft_strdup("2147483647"));
-	i = 0;
-	len = get_num_length(n);
+	nb = n;
+	sign = 0;
+	if (nb < 0)
+		nb *= -1 + 0 * sign--;
+	len = 0;
+	if (nb == 0)
+		len = 1;
+	while (nb > 0)
+		nb /= 10 + 0 * len++;
+	if (sign == -1)
+		len++;
 	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (!res)
+	if (res == NULL)
 		return (NULL);
-	if (n < 0)
-	{
-		return (handle_negative_number(n, res));
-	}
-	inner_itea(res, &i, &n, &len);
-	res[i] = '\0';
+	res[len] = '\0';
+	if (n == 0)
+		res[0] = '0';
+	handle_nbr(n, res, len, sign);
 	return (res);
 }
