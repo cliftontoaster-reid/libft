@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: cliftontr <cliftontr@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:59:29 by lfiorell          #+#    #+#             */
-/*   Updated: 2024/11/07 09:59:38 by lfiorell         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:35:14 by cliftontr        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*last_occurrence;
+	const char	*last;
 
-	last_occurrence = NULL;
-	while (*s)
+	last = s;
+	while (*last)
+		last++;
+	if ((char)c == '\0')
+		return ((char *)last);
+	while (last >= s)
 	{
-		if (*s == (char)c)
-			last_occurrence = (char *)s;
-		s++;
+		if (*last == (char)c)
+			return ((char *)last);
+		last--;
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return (last_occurrence);
+	return (NULL);
 }

@@ -1,7 +1,5 @@
 {
   "files.associations": {
-    "cstdint": "cpp",
-    "limits.h": "c",
-    "stdio.h": "c"
+    "*.h": "c"
   }
 }
