@@ -41,12 +41,24 @@ SRCS = \
 	$(SRCS_DIR)ft_tolower.c \
 	$(SRCS_DIR)ft_toupper.c \
 
+BSRC = \
+  $(SRCS_DIR)ft_lstadd_back.c \
+  $(SRCS_DIR)ft_lstadd_front.c \
+  $(SRCS_DIR)ft_lstclear.c \
+  $(SRCS_DIR)ft_lstdelone.c \
+  $(SRCS_DIR)ft_lstiter.c \
+  $(SRCS_DIR)ft_lstlast.c \
+  $(SRCS_DIR)ft_lstmap.c \
+  $(SRCS_DIR)ft_lstnew.c \
+  $(SRCS_DIR)ft_lstsize.c
+
 # Object files
 OBJS = $(SRCS:.c=.o)
+BOBJ = $(BSRC:.c=.o)
 
 # Compiler and flags
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3 -ffast-math
 INCLUDES = -I$(INCLUDES_DIR)
 
 # Rules
@@ -59,14 +71,15 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TEST_OBJS)
+	rm -f $(OBJS) $(BOBJ)
 
 fclean: clean
 	rm -rf $(NAME) libftTester
 
-re: fclean all
+bonus: $(OBJS) $(BOBJ)
+	ar rcs $(NAME) $(BOBJ) $(OBJS)
 
-test: fclean all
-	bash scripts/tests.sh
+re: fclean all
+bre: fclean bonus
 
 .PHONY: all clean fclean re test
