@@ -1,0 +1,21 @@
+name: Testing project.
+on:
+  - push
+  - fork
+jobs:
+  test:
+    name: Testing with franchinette
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing system dependencies
+        run: |
+          sudo apt remove --purge snapd
+          sudo apt update && sudo apt upgrade -y
+          sudo apt install gcc clang libpq-dev libbsd-dev libncurses-dev valgrind python2-dev python3-pip python3-dev python3-venv python3-wheel -y
+      - name: Installing francinette
+        run: |
+          bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
+          python3 -m venv venv
+          . venv/bin/activate
+      - name: Running tests
+        run: ~/francinette/tester.sh -c https://github.com/${{ github.repository }}
