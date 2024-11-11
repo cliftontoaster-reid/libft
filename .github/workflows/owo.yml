@@ -41,6 +41,8 @@ jobs:
           	printf "\nalias francinette=%s/francinette/tester.sh\n" "$HOME" >> "$RC_FILE"
           fi
           exec "$SHELL"
+
+          pip install norminette
       - uses: actions/checkout@v4
       - name: Running tests
         run: ~/francinette/tester.sh
