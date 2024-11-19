@@ -52,6 +52,9 @@ BSRC = \
   $(SRCS_DIR)ft_lstnew.c \
   $(SRCS_DIR)ft_lstsize.c
 
+STATIC_OBJECTS = \
+	$(SRCS_DIR)modules/printf/libftprintf.a \
+
 # Object files
 OBJS = $(SRCS:.c=.o)
 BOBJ = $(BSRC:.c=.o)
@@ -64,9 +67,8 @@ INCLUDES = -I$(INCLUDES_DIR)
 # Rules
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
+$(NAME): $(OBJS) $(STATIC_OBJECTS)
+	ar rcs $(NAME) $(OBJS) $(STATIC_OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -74,12 +76,24 @@ clean:
 	rm -f $(OBJS) $(BOBJ)
 
 fclean: clean
-	rm -rf $(NAME) libftTester
+	rm -rf $(NAME)
+	rm -rf ./modules
+	rm -rf ./export
 
-bonus: $(OBJS) $(BOBJ)
-	ar rcs $(NAME) $(BOBJ) $(OBJS)
+bonus: $(OBJS) $(BOBJ) $(STATIC_OBJECTS)
+	ar rcs $(NAME) $(BOBJ) $(OBJS) $(STATIC_OBJECTS)
 
 re: fclean all
 bre: fclean bonus
 
-.PHONY: all clean fclean re test
+modules/printf/libftprintf.a:
+	git clone https://github.com/cliftontoaster-reid/printf modules/printf
+	cd modules/printf && make && cd ../..
+
+export: bonus
+	mkdir -p export
+	cp ./libft.a ./export/
+	cp ./libft.h ./export/
+	cp ./modules/printf/ft_printf.h ./export/
+
+.PHONY: all clean fclean re bre bonus export test
