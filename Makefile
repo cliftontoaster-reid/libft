@@ -88,7 +88,7 @@ bre: fclean bonus
 
 modules/printf/libftprintf.a:
 	git clone https://github.com/cliftontoaster-reid/printf modules/printf
-	cd modules/printf && make && cd ../..
+	@make -C modules/printf
 
 export: bonus
 	mkdir -p export

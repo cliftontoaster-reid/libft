@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cliftontr <cliftontr@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:32:22 by lfiorell          #+#    #+#             */
-/*   Updated: 2024/11/11 18:05:54 by cliftontr        ###   ########.fr       */
+/*   Updated: 2024/12/09 15:19:33 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
+#ifndef LIBFT_H
+# define LIBFT_H
+
+# include <stddef.h>
+# include <stdlib.h>
 
 /// @brief Checks if `c` is an alpha character.
 /// @param c the character to check.
@@ -374,3 +377,5 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 /// @return The new list or `NULL` if the allocation fails.
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+#endif
