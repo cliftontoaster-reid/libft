@@ -61,7 +61,7 @@ BOBJ = $(BSRC:.c=.o)
 
 # Compiler and flags
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -O3 -ffast-math
+CFLAGS = -Wall -Wextra -Werror -O3 -ffast-math -flto=thin -march=native -pipe -g
 INCLUDES = -I$(INCLUDES_DIR)
 
 # Rules
@@ -76,9 +76,7 @@ clean:
 	rm -f $(OBJS) $(BOBJ)
 
 fclean: clean
-	rm -rf $(NAME)
-	rm -rf ./modules
-	rm -rf ./export
+	rm -rf $(NAME) modules export
 
 bonus: $(OBJS) $(BOBJ) $(STATIC_OBJECTS)
 	ar rcs $(NAME) $(BOBJ) $(OBJS) $(STATIC_OBJECTS)
