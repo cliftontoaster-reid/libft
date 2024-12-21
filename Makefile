@@ -61,7 +61,7 @@ BOBJ = $(BSRC:.c=.o)
 
 # Compiler and flags
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -O3 -ffast-math -flto=thin -march=native -pipe -g
+CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I$(INCLUDES_DIR)
 
 # Rules
