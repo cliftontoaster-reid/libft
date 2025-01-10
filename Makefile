@@ -66,7 +66,6 @@ OBJS = $(patsubst $(SRCS_DIR)%.c, $(OBJ_DIR)/%.o, $(SRCS))
 CC = clang
 CFLAGS = -Wall -Wextra -Werror \
 		 -O3 -fstack-protector-all \
-		 -D_FORTIFY_SOURCE=2 -g \
 		 -fsanitize=address -fsanitize=undefined \
 		 -pipe -fno-plt -fno-common \
 
