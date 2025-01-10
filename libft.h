@@ -6,7 +6,7 @@
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:32:22 by lfiorell          #+#    #+#             */
-/*   Updated: 2024/12/09 15:19:33 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:03:36 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,5 +377,10 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 /// @return The new list or `NULL` if the allocation fails.
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+/// @brief Prints formatted output to the standard output.
+/// @param format The format string containing any format specifiers.
+/// @return The total number of characters printed.
+int					ft_printf(const char *format, ...);
 
 #endif

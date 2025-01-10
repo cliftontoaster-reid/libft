@@ -1,4 +1,4 @@
 /export
-*.o
+target/
 *.a
 *.backup

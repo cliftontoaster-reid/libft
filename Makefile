@@ -2,6 +2,7 @@ NAME = libft.a
 
 # Directories
 SRCS_DIR = ./
+OBJ_DIR = target
 INCLUDES_DIR = ./
 
 # Source files
@@ -40,15 +41,15 @@ SRCS = \
 	$(SRCS_DIR)ft_substr.c \
 	$(SRCS_DIR)ft_tolower.c \
 	$(SRCS_DIR)ft_toupper.c \
-  $(SRCS_DIR)ft_lstadd_back.c \
-  $(SRCS_DIR)ft_lstadd_front.c \
-  $(SRCS_DIR)ft_lstclear.c \
-  $(SRCS_DIR)ft_lstdelone.c \
-  $(SRCS_DIR)ft_lstiter.c \
-  $(SRCS_DIR)ft_lstlast.c \
-  $(SRCS_DIR)ft_lstmap.c \
-  $(SRCS_DIR)ft_lstnew.c \
-  $(SRCS_DIR)ft_lstsize.c \
+	$(SRCS_DIR)ft_lstadd_back.c \
+	$(SRCS_DIR)ft_lstadd_front.c \
+	$(SRCS_DIR)ft_lstclear.c \
+	$(SRCS_DIR)ft_lstdelone.c \
+	$(SRCS_DIR)ft_lstiter.c \
+	$(SRCS_DIR)ft_lstlast.c \
+	$(SRCS_DIR)ft_lstmap.c \
+	$(SRCS_DIR)ft_lstnew.c \
+	$(SRCS_DIR)ft_lstsize.c \
 	$(SRCS_DIR)ft_printf.c \
 	$(SRCS_DIR)utils/itoa.c \
 	$(SRCS_DIR)utils/mem.c \
@@ -58,16 +59,16 @@ SRCS = \
 	$(SRCS_DIR)interface/ptr.c \
 	$(SRCS_DIR)interface/text.c \
 
-# Object files
-OBJS = $(SRCS:.c=.o)
+# Object files in target directory
+OBJS = $(patsubst $(SRCS_DIR)%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 # Compiler and flags
 CC = clang
 CFLAGS = -Wall -Wextra -Werror \
-				 -O3 -fstack-protector-all \
-				 -D_FORTIFY_SOURCE=2 -g \
-				 -fsanitize=address -fsanitize=undefined \
-				 -pipe -fno-plt -fno-common \
+		 -O3 -fstack-protector-all \
+		 -D_FORTIFY_SOURCE=2 -g \
+		 -fsanitize=address -fsanitize=undefined \
+		 -pipe -fno-plt -fno-common \
 
 INCLUDES = -I$(INCLUDES_DIR) -Iinclude
 
@@ -76,11 +77,13 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(STATIC_OBJECTS)
 	ar rcs $(NAME) $(OBJS) $(STATIC_OBJECTS)
-%.o: %.c
+
+$(OBJ_DIR)/%.o: $(SRCS_DIR)%.c
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(BOBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -rf $(NAME) modules export
@@ -92,6 +95,5 @@ export: $(NAME)
 	mkdir -p export
 	cp ./libft.a ./export/
 	cp ./libft.h ./export/
-	cp ./modules/printf/ft_printf.h ./export/
 
 .PHONY: all clean fclean re bre bonus export test
