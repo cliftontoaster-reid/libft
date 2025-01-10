@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   hex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 10:42:40 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:48:57 by lfiorell         ###   ########.fr       */
+/*   Created: 2024/11/14 14:33:09 by lfiorell          #+#    #+#             */
+/*   Updated: 2024/11/15 16:23:52 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <interface/ptr.h>
+#include <interface/text.h>
+#include <stddef.h>
+#include <stdlib.h>
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_puthex(unsigned int n, int upper)
 {
-	ssize_t	ret;
+	char	*res;
+	int		len;
 
-	ret = write(fd, &c, 1);
-	(void)ret;
+	if (n == 0)
+		return (ft_putstr("0"));
+	res = ft_ptrtoa(n, upper);
+	if (res == NULL)
+	{
+		free(res);
+		len = ft_putstr("(nil)");
+		return (len);
+	}
+	len = ft_putstr(res);
+	free(res);
+	return (len);
 }

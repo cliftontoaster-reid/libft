@@ -40,8 +40,6 @@ SRCS = \
 	$(SRCS_DIR)ft_substr.c \
 	$(SRCS_DIR)ft_tolower.c \
 	$(SRCS_DIR)ft_toupper.c \
-
-BSRC = \
   $(SRCS_DIR)ft_lstadd_back.c \
   $(SRCS_DIR)ft_lstadd_front.c \
   $(SRCS_DIR)ft_lstclear.c \
@@ -50,19 +48,29 @@ BSRC = \
   $(SRCS_DIR)ft_lstlast.c \
   $(SRCS_DIR)ft_lstmap.c \
   $(SRCS_DIR)ft_lstnew.c \
-  $(SRCS_DIR)ft_lstsize.c
-
-STATIC_OBJECTS = \
-	$(SRCS_DIR)modules/printf/libftprintf.a \
+  $(SRCS_DIR)ft_lstsize.c \
+	$(SRCS_DIR)ft_printf.c \
+	$(SRCS_DIR)utils/itoa.c \
+	$(SRCS_DIR)utils/ft_putchar.c \
+	$(SRCS_DIR)utils/mem.c \
+	$(SRCS_DIR)utils/token.c \
+	$(SRCS_DIR)interface/hex.c \
+	$(SRCS_DIR)interface/nbr.c \
+	$(SRCS_DIR)interface/ptr.c \
+	$(SRCS_DIR)interface/text.c \
 
 # Object files
 OBJS = $(SRCS:.c=.o)
-BOBJ = $(BSRC:.c=.o)
 
 # Compiler and flags
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I$(INCLUDES_DIR)
+CFLAGS = -Wall -Wextra -Werror \
+				 -O3 -fstack-protector-all \
+				 -D_FORTIFY_SOURCE=2 -g \
+				 -fsanitize=address -fsanitize=undefined \
+				 -pipe -fno-plt -fno-common \
+
+INCLUDES = -I$(INCLUDES_DIR) -Iinclude
 
 # Rules
 all: $(NAME)
@@ -78,17 +86,10 @@ clean:
 fclean: clean
 	rm -rf $(NAME) modules export
 
-bonus: $(OBJS) $(BOBJ) $(STATIC_OBJECTS)
-	ar rcs $(NAME) $(BOBJ) $(OBJS) $(STATIC_OBJECTS)
-
 re: fclean all
 bre: fclean bonus
 
-modules/printf/libftprintf.a:
-	git clone https://github.com/cliftontoaster-reid/printf modules/printf
-	@make -C modules/printf
-
-export: bonus
+export: $(NAME)
 	mkdir -p export
 	cp ./libft.a ./export/
 	cp ./libft.h ./export/

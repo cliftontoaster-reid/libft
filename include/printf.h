@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 10:42:40 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:48:57 by lfiorell         ###   ########.fr       */
+/*   Created: 2024/11/13 16:45:42 by lfiorell          #+#    #+#             */
+/*   Updated: 2024/11/14 12:39:14 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar_fd(char c, int fd)
+struct	s_flags
 {
-	ssize_t	ret;
+	int	precision;
 
-	ret = write(fd, &c, 1);
-	(void)ret;
-}
+}		t_flags;
+
+/// @brief Prints a formatted string to the standard output stream.
+/// @param * the string to print
+/// @param ... the arguments to print
+/// @return the number of characters printed
+int		ft_printf(const char *format, ...);

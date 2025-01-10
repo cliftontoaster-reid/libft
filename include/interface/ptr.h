@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ptr.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 10:42:40 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:48:57 by lfiorell         ###   ########.fr       */
+/*   Created: 2024/11/14 14:53:51 by lfiorell          #+#    #+#             */
+/*   Updated: 2024/11/15 16:19:04 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+/// @brief Converts and prints a pointer address to hexadecimal format
+/// @param ptr The pointer whose address needs to be printed
+/// @return The number of characters printed
+int		ft_putptr(long long ptr);
 
-void	ft_putchar_fd(char c, int fd)
-{
-	ssize_t	ret;
-
-	ret = write(fd, &c, 1);
-	(void)ret;
-}
+char	*ft_ptrtoa(unsigned long long n, int upper);

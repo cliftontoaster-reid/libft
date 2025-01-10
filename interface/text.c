@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   text.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 10:42:40 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:48:57 by lfiorell         ###   ########.fr       */
+/*   Created: 2024/11/14 12:58:36 by lfiorell          #+#    #+#             */
+/*   Updated: 2024/11/14 17:11:55 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar(char c)
 {
-	ssize_t	ret;
+	return (write(1, &c, 1));
+}
 
-	ret = write(fd, &c, 1);
-	(void)ret;
+int	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return (ft_putstr("(null)"));
+	while (str[i] != '\0')
+		if (ft_putchar(str[i++]) == -1)
+			return (-1);
+	return (i);
 }

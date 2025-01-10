@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   mem.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 10:42:40 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:48:57 by lfiorell         ###   ########.fr       */
+/*   Created: 2024/11/14 09:35:08 by lfiorell          #+#    #+#             */
+/*   Updated: 2024/11/14 09:35:37 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stddef.h>
 
-void	ft_putchar_fd(char c, int fd)
-{
-	ssize_t	ret;
-
-	ret = write(fd, &c, 1);
-	(void)ret;
-}
+void	*ft_calloc(size_t count, size_t size);
+void	*ft_memset(void *b, int c, size_t len);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);

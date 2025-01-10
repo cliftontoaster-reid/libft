@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   text.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 10:42:40 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:48:57 by lfiorell         ###   ########.fr       */
+/*   Created: 2024/11/14 12:59:53 by lfiorell          #+#    #+#             */
+/*   Updated: 2024/11/14 13:00:51 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+/// @brief Outputs the character 'c' to the standard output
+/// @param c The character to output
+/// @return The number of characters printed (always 1) or -1 on error
+int	ft_putchar(char c);
 
-void	ft_putchar_fd(char c, int fd)
-{
-	ssize_t	ret;
-
-	ret = write(fd, &c, 1);
-	(void)ret;
-}
+/// @brief Outputs the string 'str' to the standard output
+/// @param str The string to output
+/// @return The number of characters printed or -1 on error
+int	ft_putstr(char *str);

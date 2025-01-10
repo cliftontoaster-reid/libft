@@ -1,21 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 10:42:40 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:48:57 by lfiorell         ###   ########.fr       */
+/*   Created: 2024/11/14 12:39:25 by lfiorell          #+#    #+#             */
+/*   Updated: 2024/11/14 12:46:52 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#define TOKENS "\%cspdiuxX"
+#define FLAGS "#0-+. "
 
-void	ft_putchar_fd(char c, int fd)
+int	is_flag(char c)
 {
-	ssize_t	ret;
+	int	i;
 
-	ret = write(fd, &c, 1);
-	(void)ret;
+	i = 0;
+	while (FLAGS[i])
+	{
+		if (FLAGS[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	is_token(char c)
+{
+	int	i;
+
+	i = 0;
+	while (TOKENS[i])
+		if (TOKENS[i++] == c)
+			return (1);
+	return (0);
+}
+
+int	is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
 }
