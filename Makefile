@@ -51,7 +51,6 @@ SRCS = \
   $(SRCS_DIR)ft_lstsize.c \
 	$(SRCS_DIR)ft_printf.c \
 	$(SRCS_DIR)utils/itoa.c \
-	$(SRCS_DIR)utils/ft_putchar.c \
 	$(SRCS_DIR)utils/mem.c \
 	$(SRCS_DIR)utils/token.c \
 	$(SRCS_DIR)interface/hex.c \
