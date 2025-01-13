@@ -6,7 +6,7 @@
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:32:22 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 17:03:36 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:51:16 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,7 +322,7 @@ t_list				*ft_lstnew(void *content);
 ///            a list.
 /// @param new The address of a pointer to the node to be
 ///            added to the list.
-void				ft_lstadd_front(t_list **lst, t_list *new);
+void				ft_lstadd_front(t_list **lst, t_list *elem);
 
 /// @brief Counts the number of nodes in a list.
 /// @param lst The beginning of the list.
@@ -340,7 +340,7 @@ t_list				*ft_lstlast(t_list *lst);
 /// @param new The address of a pointer to the node to be
 ///            added to the list.
 /// @return Adds the node `new` at the end of the list.
-void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstadd_back(t_list **lst, t_list *elem);
 
 /// @brief Takes as a parameter a node and frees the memory of
 ///        the node’s content using the function `del` given
