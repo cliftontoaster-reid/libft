@@ -2,7 +2,7 @@ NAME = libft.a
 
 # Directories
 SRCS_DIR = ./
-OBJ_DIR = target
+OBJ_DIR ?= target
 INCLUDES_DIR = ./
 
 # Source files
