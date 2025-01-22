@@ -67,7 +67,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror \
 		 -O3 -fstack-protector-all \
 		 -fsanitize=address -fsanitize=undefined \
-		 -pipe -fno-plt -fno-common \
+		 -pipe -fno-plt -fno-common -g \
 
 INCLUDES = -I$(INCLUDES_DIR) -Iinclude
 
