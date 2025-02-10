@@ -89,9 +89,4 @@ fclean: clean
 re: fclean all
 bre: fclean bonus
 
-export: $(NAME)
-	mkdir -p export
-	cp ./libft.a ./export/
-	cp ./libft.h ./export/
-
 .PHONY: all clean fclean re bre bonus export test

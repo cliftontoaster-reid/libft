@@ -81,7 +81,6 @@ jobs:
       - name: Build libft
         run: |
           make CC=${{ matrix.compiler }} re
-          [ -f libft.a ] && cp libft.a ${{ github.workspace }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
