@@ -74,10 +74,11 @@ jobs:
           make CC=${{ matrix.compiler }} re
 
       - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: pip
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install --upgrade pip wheel
+          pip install -r requirements.txt
 
       - name: Bootstrap Francinette
         run: |
@@ -90,19 +91,9 @@ jobs:
           cd $FRANCINETTE_HOME
           git submodule update --init --recursive
 
-          if [ ! -d "venv" ]; then
-            python -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip wheel
-            pip install -r requirements.txt norminette
-          else:
-            . venv/bin/activate
-          fi
-
       - name: Run compiler-specific tests
         run: |
           cd $FRANCINETTE_HOME
-          . venv/bin/activate
           ./tester.sh --strict --compiler ${{ matrix.compiler }} \
             --path ${{ github.workspace }}
 
