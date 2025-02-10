@@ -81,14 +81,7 @@ jobs:
 
       - name: Bootstrap Francinette
         run: |
-          if [ ! -d "$FRANCINETTE_HOME" ]; then
-            git clone --depth 1 --recursive \
-              https://github.com/xicodomingues/francinette.git \
-              $FRANCINETTE_HOME
-          fi
-
-          cd $FRANCINETTE_HOME
-          git submodule update --init --recursive
+          bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
 
       - name: Run compiler-specific tests
         run: |
