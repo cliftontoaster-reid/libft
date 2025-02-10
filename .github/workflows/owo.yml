@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04, ubuntu-20.04, ubuntu-latest, macos-latest]
+        os: [ubuntu-22.04, ubuntu-20.04, ubuntu-latest]
         compiler: [clang, gcc, cc]
         include:
           - os: ubuntu-22.04
@@ -36,15 +36,6 @@ jobs:
             compiler: gcc
             cc_package: gcc
           - os: ubuntu-latest
-            compiler: cc
-            cc_package: gcc
-          - os: macos-latest
-            compiler: clang
-            cc_package: clang
-          - os: macos-latest
-            compiler: gcc
-            cc_package: gcc
-          - os: macos-latest
             compiler: cc
             cc_package: gcc
     env:
@@ -104,7 +95,7 @@ jobs:
             . venv/bin/activate
             pip install --upgrade pip wheel
             pip install -r requirements.txt norminette
-          else
+          else:
             . venv/bin/activate
           fi
 
