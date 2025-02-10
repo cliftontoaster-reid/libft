@@ -78,7 +78,6 @@ jobs:
           python -m venv venv
           . venv/bin/activate
           pip install --upgrade pip wheel
-          pip install -r requirements.txt
 
       - name: Bootstrap Francinette
         run: |
