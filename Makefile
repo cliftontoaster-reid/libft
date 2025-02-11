@@ -6,7 +6,23 @@ OBJ_DIR ?= target
 CACHE_DIR ?= cache
 INCLUDES_DIR = ./
 
-# Source files grouped by category
+# Enable sanitizer flags if FSANETISE=true is provided
+ifeq ($(FSANETISE),true)
+SANITIZER_FLAGS = -fsanitize=address -fsanitize=undefined
+else
+SANITIZER_FLAGS =
+endif
+
+# Compiler and flags
+CC = clang
+CFLAGS = -Wall -Wextra -Werror \
+         -O3 -fstack-protector-all \
+         $(SANITIZER_FLAGS) \
+         -pipe -fno-plt -fno-common -g
+
+INCLUDES = -I$(INCLUDES_DIR) -Iinclude
+
+# Source and object files
 SRCS = \
     $(SRCS_DIR)ctype/ft_isalnum.c \
     $(SRCS_DIR)ctype/ft_isalpha.c \
@@ -56,7 +72,7 @@ SRCS = \
     $(SRCS_DIR)fd/ft_putstr_fd.c \
     $(SRCS_DIR)fd/ft_putendl_fd.c \
     $(SRCS_DIR)fd/ft_putnbr_fd.c \
-    $(SRCS_DIR)fd/ft_printf.c	\
+    $(SRCS_DIR)fd/ft_printf.c \
     \
     $(SRCS_DIR)utils/itoa.c \
     $(SRCS_DIR)utils/token.c \
@@ -66,23 +82,13 @@ SRCS = \
     $(SRCS_DIR)interface/ptr.c \
     $(SRCS_DIR)interface/text.c \
 
-# Object files in target directory
 OBJS = $(patsubst $(SRCS_DIR)%.c, $(OBJ_DIR)/%.o, $(SRCS))
-
-# Compiler and flags
-CC = clang
-CFLAGS = -Wall -Wextra -Werror \
-		 -O3 -fstack-protector-all \
-		 -fsanitize=address -fsanitize=undefined \
-		 -pipe -fno-plt -fno-common -g \
-
-INCLUDES = -I$(INCLUDES_DIR) -Iinclude
 
 # Rules
 all: $(NAME)
 
-$(NAME): $(OBJS) $(STATIC_OBJECTS)
-	ar rcs $(NAME) $(OBJS) $(STATIC_OBJECTS)
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)%.c
 	mkdir -p $(dir $@)
@@ -99,6 +105,10 @@ fclean: clean
 	rm -rf $(NAME) modules export
 
 re: fclean all
+
+bonus: $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+
 bre: fclean bonus
 
 .PHONY: all clean fclean re bre bonus export test
