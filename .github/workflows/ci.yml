@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.c'
+      - '**.h'
+      - 'Makefile'
+      - 'tests/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.c'
+      - '**.h'
+      - 'Makefile'
+      - 'tests/**'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04, ubuntu-24.04]
+        compiler: [cc, gcc, clang]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          sudo apt-get install -y gcc clang make valgrind
+
+      - name: Cache CUnit
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: ${{ runner.os }}-cunit-${{ hashFiles('tests/Makefile') }}
+
+      - name: Cache build
+        uses: actions/cache@v4
+        with:
+          path: |
+            target
+            *.a
+          key: ${{ runner.os }}-${{ matrix.compiler }}-build-${{ hashFiles('**/*.c', '**/*.h', 'Makefile') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.compiler }}-build-
+
+      - name: Install Norminette
+        run: |
+          python -m pip install --upgrade pip
+          pip install norminette
+
+      - name: Run Norminette
+        run: |
+          norminette --use-gitignore
+
+      - name: Set compiler
+        run: |
+          echo "CC=${{ matrix.compiler }}" >> $GITHUB_ENV
+
+      - name: Build and Test
+        run: |
+          make clean
+          make test
