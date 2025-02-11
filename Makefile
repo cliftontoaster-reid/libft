@@ -3,6 +3,7 @@ NAME = libft.a
 # Directories
 SRCS_DIR = ./
 OBJ_DIR ?= target
+CACHE_DIR ?= cache
 INCLUDES_DIR = ./
 
 # Source files
@@ -79,6 +80,10 @@ $(NAME): $(OBJS) $(STATIC_OBJECTS)
 $(OBJ_DIR)/%.o: $(SRCS_DIR)%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+test: $(NAME)
+	$(MAKE) -C tests OBJ_DIR=$(abspath $(OBJ_DIR)/tests) EXT_OBJ=$(abspath $(NAME)) CACHE_DIR=$(abspath $(CACHE_DIR)/tests)
+	./tests/libft_test
 
 clean:
 	rm -rf $(OBJ_DIR)
