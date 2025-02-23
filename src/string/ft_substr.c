@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	slen = ft_strlen(s);
+	slen = (size_t)ft_strlen(s);
 	if (start >= slen)
 	{
 		return (ft_calloc(1, 1));
@@ -31,7 +31,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	{
 		return (NULL);
 	}
-	if (ft_memcpy(substr, s + start, len) == NULL)
+	if (ft_memcpy(substr, s + start, (int)len) == NULL)
 	{
 		free(substr);
 		return (NULL);

@@ -32,6 +32,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	{
 		return (NULL);
 	}
-	ft_memset(ptr, 0, total_size);
+	ft_memset(ptr, 0, (int)total_size);
 	return (ptr);
 }

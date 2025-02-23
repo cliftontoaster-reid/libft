@@ -36,13 +36,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	while (s1[start] && ft_strcontain(s1[start], set))
 		start++;
-	end = ft_strlen(s1);
+	end = (size_t)ft_strlen(s1);
 	while (end > start && ft_strcontain(s1[end - 1], set))
 		end--;
 	trimmed_str = (char *)malloc(end - start + 1);
 	if (!trimmed_str)
 		return (NULL);
-	ft_memcpy(trimmed_str, &s1[start], end - start);
+	ft_memcpy(trimmed_str, &s1[start], (int)(end - start));
 	trimmed_str[end - start] = '\0';
 	return (trimmed_str);
 }

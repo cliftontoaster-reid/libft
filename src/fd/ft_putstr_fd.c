@@ -19,6 +19,6 @@ void	ft_putstr_fd(char *s, int fd)
 
 	if (s == NULL)
 		return ;
-	ret = write(fd, s, ft_strlen(s));
+	ret = write(fd, s, (size_t)ft_strlen(s));
 	(void)ret;
 }

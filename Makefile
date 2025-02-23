@@ -15,7 +15,7 @@ endif
 
 # Compiler and flags
 CC = clang
-CFLAGS = -Wall -Wextra -Werror \
+CFLAGS = -Wall -Wextra -Werror -Wshadow -Wconversion -Wsign-conversion \
          -O3 -fstack-protector-all \
          $(SANITIZER_FLAGS) \
          -pipe -fno-plt -fno-common -g

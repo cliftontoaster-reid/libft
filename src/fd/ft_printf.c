@@ -44,7 +44,7 @@ static int	handle_token(va_list args, const char **format)
 		return (ft_putchar(**format));
 	(*format)++;
 	if (**format == 'c')
-		count += ft_putchar(va_arg(args, int));
+		count += ft_putchar((char)va_arg(args, int));
 	else if (**format == 's')
 		count += ft_putstr(va_arg(args, char *));
 	else if (**format == 'p')

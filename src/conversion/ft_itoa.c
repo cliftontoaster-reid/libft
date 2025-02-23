@@ -45,7 +45,7 @@ char	*ft_itoa(int n)
 		nb /= 10 + 0 * len++;
 	if (sign == -1)
 		len++;
-	res = (char *)malloc(sizeof(char) * (len + 1));
+	res = (char *)malloc(sizeof(char) * (unsigned long)(len + 1));
 	if (res == NULL)
 		return (NULL);
 	res[len] = '\0';

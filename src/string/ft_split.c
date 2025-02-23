@@ -17,13 +17,13 @@ char	*ft_strndup(const char *s, size_t n)
 	size_t	len;
 	char	*res;
 
-	len = ft_strlen(s);
+	len = (size_t)ft_strlen(s);
 	if (n < len)
 		len = n;
 	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (NULL);
-	ft_memcpy(res, (void *)s, len);
+	ft_memcpy(res, (void *)s, (int)len);
 	res[len] = '\0';
 	return (res);
 }
@@ -37,7 +37,7 @@ static char	*get_next_word(const char **s, char c)
 	start = *s;
 	while (**s && **s != c)
 		(*s)++;
-	return (ft_strndup(start, *s - start));
+	return (ft_strndup(start, (size_t)(*s - start)));
 }
 
 static int	count_words(const char *s, char c)
@@ -86,7 +86,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_count = count_words(s, c);
-	result = malloc((word_count + 1) * sizeof(char *));
+	result = malloc(((size_t)word_count + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
 	i = 0;

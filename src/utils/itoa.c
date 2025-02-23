@@ -45,7 +45,7 @@ char	*ft_ltoa(long n)
 		nb /= 10 + 0 * len++;
 	if (sign == -1)
 		len++;
-	res = (char *)malloc(sizeof(char) * (len + 1));
+	res = (char *)malloc(sizeof(char) * (size_t)(len + 1));
 	if (res == NULL)
 		return (NULL);
 	res[len] = '\0';

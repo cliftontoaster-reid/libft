@@ -15,6 +15,7 @@ CUNIT_LIB = $(CUNIT_INSTALL_DIR)/lib/libcunit.a
 
 CFLAGS = -Wall -Wextra -Werror -Wpedantic -std=c++17 -g -fsanitize=undefined -fsanitize=address \
 		 -I$(CUNIT_INSTALL_DIR)/include -I$(LFT_DIR) -I$(INC_DIR) -I..
+
 LDFLAGS = -g -fsanitize=undefined -fsanitize=address \
 	-L$(CUNIT_INSTALL_DIR)/lib -lcunit \
 	-Wl,-rpath,$(CUNIT_INSTALL_DIR)/lib
