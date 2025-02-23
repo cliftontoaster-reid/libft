@@ -3,3 +3,4 @@ target/
 cache/
 *.a
 *.backup
+tests/libft_test
