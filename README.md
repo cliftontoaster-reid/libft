@@ -82,15 +82,21 @@ Library 42 is a C library providing a wide range of utility functions—from cha
 
 ## Requirements
 
-- A C compiler (e.g. clang or gcc)
+- The clang C compiler
 - GNU Make
 - [CUnit](https://cunit.sourceforge.net) for unit tests
 - _Optional:_ `norminette` for style checking
 
+## How to use
+
+To use the library, you must first build it, using the provided Makefile and its variables to customize the build process.
+
 ## Build & Test Instructions
 
-1. **Build the Library:**  
-   Run the following command to compile and archive the library into [`libft.a`](libft.a):
-   ```sh
-   make
-   ```
+To run the built-in tests, you may simply run the following command.
+
+```bash
+make test
+```
+
+And now enjoy the pretty working results.
