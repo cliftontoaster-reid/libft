@@ -18,9 +18,9 @@ static void	handle_nbr(long n, char *res, int len, int sign)
 	while (n != 0)
 	{
 		if (n < 0)
-			res[--len] = (n % 10) * -1 + '0';
+			res[--len] = ((char)n % 10) * -1 + '0';
 		else
-			res[--len] = n % 10 + '0';
+			res[--len] = (char)n % 10 + '0';
 		n /= 10;
 	}
 	if (sign == -1)

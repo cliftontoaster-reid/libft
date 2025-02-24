@@ -1,20 +1,23 @@
 name: CI
-
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - '**.c'
-      - '**.h'
-      - 'Makefile'
-      - 'tests/**'
+      - "**.c"
+      - "**.h"
+      - Makefile
+      - tests/**
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - '**.c'
-      - '**.h'
-      - 'Makefile'
-      - 'tests/**'
+      - "**.c"
+      - "**.h"
+      - Makefile
+      - tests/**
 
 jobs:
   build:
@@ -23,15 +26,33 @@ jobs:
       matrix:
         os: [ubuntu-20.04, ubuntu-22.04, ubuntu-24.04]
         compiler: [cc, gcc, clang]
+        linker: [ld, lld, mold]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Update package list
+        run: sudo apt-get update
+
+      - name: Install Base Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 python3-pip
-          sudo apt-get install -y gcc clang make valgrind
+          sudo apt-get install -y make valgrind python3 python3-pip
+
+      - name: Install Compiler (GCC/CC)
+        if: ${{ contains('gcc cc', matrix.compiler) }}
+        run: sudo apt-get install -y gcc
+
+      - name: Install Compiler (Clang)
+        if: ${{ matrix.compiler == 'clang' }}
+        run: sudo apt-get install -y clang
+
+      - name: Install Linker (lld)
+        if: ${{ matrix.linker == 'lld' }}
+        run: sudo apt-get install -y lld
+
+      - name: Install Linker (mold)
+        if: ${{ matrix.linker == 'mold' }}
+        run: sudo apt-get install -y mold
 
       - name: Cache CUnit
         uses: actions/cache@v4
@@ -55,14 +76,11 @@ jobs:
           pip install norminette
 
       - name: Run Norminette
-        run: |
-          norminette --use-gitignore
+        run: norminette --use-gitignore
 
       - name: Set compiler
-        run: |
-          echo "CC=${{ matrix.compiler }}" >> $GITHUB_ENV
+        run: echo "CC=${{ matrix.compiler }}" >> $GITHUB_ENV
 
       - name: Build and Test
         run: |
-          make clean
-          make test
+          make re test

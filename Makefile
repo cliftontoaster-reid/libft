@@ -105,6 +105,7 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C tests
 	rm -rf $(NAME) modules export
+	rm -rf $(CACHE_DIR)
 
 re: fclean all
 
