@@ -83,9 +83,6 @@ jobs:
       - name: Run Norminette
         run: norminette --use-gitignore
 
-      - name: Set compiler
-        run: echo "CC=${{ matrix.compiler }}" >> $GITHUB_ENV
-
       - name: Build and Test
         run: |
-          make re test
+          make re test CC=${{ matrix.compiler }}
