@@ -6,7 +6,7 @@
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:41:48 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/03/25 16:31:20 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:37:23 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	handle_token(va_list args, const char **format)
 	return (count);
 }
 
-int	ft_vprintf(va_list args, const char *format)
+int	ft_vprintf(const char *format, va_list args)
 {
 	int	count;
 
@@ -88,7 +88,7 @@ int	ft_printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	count = ft_vprintf(args, format);
+	count = ft_vprintf(format, args);
 	va_end(args);
 	return (count);
 }
