@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:32:22 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/13 16:51:16 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:31:18 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdarg.h>
 # include <stddef.h>
 # include <stdlib.h>
 
@@ -382,5 +383,21 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 /// @param format The format string containing any format specifiers.
 /// @return The total number of characters printed.
 int					ft_printf(const char *format, ...);
+
+/**
+ * @brief Outputs formatted text to stdout using a va_list for arguments
+ *
+ * This function writes output to stdout,
+ *  under control of the format string
+ * that specifies how subsequent arguments
+ * (via va_list) are converted for output.
+ *
+ * @param args Variable argument list containing values to be formatted
+ * @param format Format string that specifies how to interpret the data
+ *
+ * @return The number of characters printed,
+	or a negative value if an error occurs
+ */
+int					ft_vprintf(va_list args, const char *format);
 
 #endif

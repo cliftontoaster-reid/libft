@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:41:48 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/01/10 16:41:53 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:31:20 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	handle_token(va_list args, const char **format)
 	return (count);
 }
 
-static int	parse_args(va_list args, const char *format)
+int	ft_vprintf(va_list args, const char *format)
 {
 	int	count;
 
@@ -88,7 +88,7 @@ int	ft_printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	count = parse_args(args, format);
+	count = ft_vprintf(args, format);
 	va_end(args);
 	return (count);
 }
