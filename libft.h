@@ -6,7 +6,7 @@
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:32:22 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/03/25 16:31:18 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:39:47 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -398,6 +398,6 @@ int					ft_printf(const char *format, ...);
  * @return The number of characters printed,
 	or a negative value if an error occurs
  */
-int					ft_vprintf(va_list args, const char *format);
+int					ft_vprintf(const char *format, va_list args);
 
 #endif
