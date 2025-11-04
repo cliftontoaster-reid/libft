@@ -4,3 +4,5 @@ cache/
 *.a
 *.backup
 tests/libft_test
+/compile_commands.json
+/.cache

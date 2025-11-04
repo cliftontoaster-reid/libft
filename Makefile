@@ -57,6 +57,8 @@ SRCS = \
 	$(SRCS_DIR)string/ft_split.c \
 	$(SRCS_DIR)string/ft_striteri.c \
 	$(SRCS_DIR)string/ft_strmapi.c \
+	$(SRCS_DIR)string/ft_strcmp.c \
+	${SRCS_DIR}string/ft_strfreq.c \
 	\
 	$(SRCS_DIR)list/ft_lstadd_back.c \
 	$(SRCS_DIR)list/ft_lstadd_front.c \
@@ -113,5 +115,10 @@ bonus: $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 bre: fclean bonus
+
+compile_commands.json: Makefile $(SRC) $(INC)
+	@echo "Generating compile_commands.json ..."
+	@bear -- $(MAKE) fclean all CC=cc
+	@echo "compile_commands.json generated."
 
 .PHONY: all clean fclean re bre bonus export test

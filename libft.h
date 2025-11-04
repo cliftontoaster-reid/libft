@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: lfiorell@student.42nice.fr <lfiorell>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:32:22 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/03/25 16:39:47 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/11/04 11:34:38 by lfiorell@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,14 @@ char				*ft_strrchr(const char *s, int c);
 ///         than `s2`.
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
+/// @brief Compares the strings `s1` and `s2`.
+/// @param s1 The first string to compare.
+/// @param s2 The second string to compare.
+/// @return An integer less than, equal to, or greater than zero if `s1` is
+///         found, respectively, to be less than, to match, or be greater
+///         than `s2`.
+int					ft_strcmp(const char *s1, const char *s2);
+
 /// @brief Locates the first occurrence of the character `c` (an unsigned
 ///        char) in the string pointed to by `s`.
 /// @param s The string to search.
@@ -222,7 +230,7 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 /// @param start The start index of the substring in the string `s`.
 /// @param len The maximum length of the substring.
 /// @return (The substring or `NULL` if the allocation fails.
-char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_substr(const char *s, unsigned int start, size_t len);
 
 /// @brief Allocates (with malloc(3)) and returns a new string, which is the
 /// result of the concatenation of `s1` and `s2`.
@@ -233,7 +241,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 /// @param s1 The prefix string.
 /// @param s2 The suffix string.
 /// @return The new string or `NULL` if the allocation fails
-char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin(const char *s1, const char *s2);
 
 /// @brief Allocates (with malloc(3)) and returns a copy of `s1` with the
 /// characters specified in `set` removed from the beginning and the end of
@@ -241,13 +249,13 @@ char				*ft_strjoin(char const *s1, char const *s2);
 /// @param s1 The string to be trimmed.
 /// @param set The reference set of characters to trim.
 /// @return The trimmed string or `NULL` if the allocation fails.
-char				*ft_strtrim(char const *s1, char const *set);
+char				*ft_strtrim(const char *s1, const char *set);
 
 /// @brief Returns the frequency of a character in a string.
 /// @param str The string to search in.
 /// @param c The character to count occurrences of.
 /// @return The number of times the character appears in the string.
-int					ft_strfreq(char *str, char c);
+size_t				ft_strfreq(const char *str, char c);
 
 /// @brief Allocates (with malloc(3)) and returns an array of strings obtained
 /// by splitting `s` using th character `c` as a delimiter. The array must end
