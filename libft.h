@@ -6,7 +6,7 @@
 /*   By: lfiorell@student.42nice.fr <lfiorell>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 09:32:22 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/11/04 11:34:38 by lfiorell@st      ###   ########.fr       */
+/*   Updated: 2025/11/04 15:26:54 by lfiorell@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,18 +293,18 @@ void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 /// @brief Outputs the character `c` to the given file descriptor.
 /// @param c The character to output.
 /// @param fd The file descriptor on which to write.
-void				ft_putchar_fd(char c, int fd);
+void				ft_putchar_fd(const char c, int fd);
 
 /// @brief Outputs the string `s` to the given file descriptor.
 /// @param s The string to output.
 /// @param fd The file descriptor on which to write.
-void				ft_putstr_fd(char *s, int fd);
+void				ft_putstr_fd(const char *s, int fd);
 
 /// @brief Outputs the string `s` to the given file descriptor
 /// followed by a newline.
 /// @param s The string to output.
 /// @param fd The file descriptor on which to write.
-void				ft_putendl_fd(char *s, int fd);
+void				ft_putendl_fd(const char *s, int fd);
 
 /// @brief Outputs the integer `n` to the given file descriptor.
 /// @param n The integer to output.
